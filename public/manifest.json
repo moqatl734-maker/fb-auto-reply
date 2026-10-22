@@ -1,0 +1,20 @@
+{
+  "name": "MetaPulse - أتمتة ردود فيسبوك وإنستغرام",
+  "short_name": "MetaPulse",
+  "description": "لوحة تحكم ذكية لإدارة الردود التلقائية ورسائل الماسنجر والـ DM لفيسبوك وإنستغرام",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0f19",
+  "theme_color": "#0f172a",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "fb-auto-reply-system",
+  "version": "1.0.0",
+  "description": "نظام وأتمتة الردود التلقائية لفيسبوك مع لوحة تحكم ذكية",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "facebook",
+    "automation",
+    "webhook",
+    "bot",
+    "auto-reply"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "devDependencies": {
+    "localtunnel": "^2.0.2"
+  }
+}

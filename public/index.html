@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="تطبيق ولوحة تحكم ذكية وشاملة لأتمتة الردود على تعليقات فيسبوك وإنستغرام مع درع الحماية ومكافحة الحظر وتخصيص المنشورات">
+  <title>نظام أتمتة ردود فيسبوك وإنستغرام الموحد | MetaPulse</title>
+  
+  <!-- إعدادات تطبيق الهاتف (PWA & Mobile Meta) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b0f19">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MetaPulse">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="icon.svg">
+  
+  <!-- خطوط Google Fonts الاحترافية -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- الشريط الجانبي (Sidebar) للحواسيب -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h2>MetaPulse</h2>
+          <span class="multi-platform-badge">فيسبوك + إنستغرام</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="tab-overview" id="nav-btn-overview">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>لوحة القيادة والمحاكي</span>
+        </button>
+        <button class="nav-item" data-tab="tab-rules" id="nav-btn-rules">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>قواعد الرد والكلمات</span>
+          <span class="badge" id="badge-rules-count">4</span>
+        </button>
+        <button class="nav-item" data-tab="tab-logs" id="nav-btn-logs">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span>سجل النشاط المباشر</span>
+          <span class="badge badge-pulse" id="badge-logs-count">1</span>
+        </button>
+        <button class="nav-item" data-tab="tab-settings" id="nav-btn-settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>إعدادات الربط ودرع الأمان</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-indicator">
+          <span class="status-dot pulse"></span>
+          <div>
+            <div class="status-title">درع الحماية نشط 🛡️</div>
+            <small id="webhook-port-text">معدل سرعة آمن + طابور ذكي</small>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي (Main Content) -->
+    <main class="main-content">
+      
+      <!-- شريط الرأس العلوي (Top Header) -->
+      <header class="top-header">
+        <div class="header-title">
+          <h1 id="page-main-heading">نظام أتمتة الردود</h1>
+          <p>لوحة تحكم ذكية لفيسبوك وإنستغرام</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-emergency" id="btn-emergency-stop" title="إيقاف مؤقت للردود التلقائية">
+            <span class="emergency-icon">🛑</span>
+            <span id="emergency-btn-text">إيقاف الطوارئ</span>
+          </button>
+          <span class="chip-shield" id="header-shield-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            درع الأمان 100%
+          </span>
+          <button class="btn btn-outline" id="btn-install-app" style="display: none;">
+            تثبيت التطبيق 📱
+          </button>
+          <div class="platform-chips-header">
+            <span class="platform-indicator fb-color">فيسبوك</span>
+            <span class="platform-indicator ig-color">إنستغرام</span>
+          </div>
+          <button class="btn btn-primary" id="btn-quick-new-rule">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            قاعدة جديدة
+          </button>
+        </div>
+      </header>
+
+      <!-- التبويب 1: لوحة القيادة والمحاكي المباشر -->
+      <section class="tab-pane active" id="tab-overview">
+        
+        <!-- بطاقات الإحصائيات المختصرة -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon icon-blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">التعليقات</span>
+              <h3 class="stat-number" id="stat-total-processed">0</h3>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">ردود ناجحة</span>
+              <h3 class="stat-number" id="stat-successful-replies">0</h3>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-purple">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">قواعد مخصصة</span>
+              <h3 class="stat-number" id="stat-post-rules-count">2</h3>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-orange">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">درع الأمان</span>
+              <h3 class="stat-number status-text" id="stat-anti-ban-status" style="color: #10b981;">نشط 🛡️</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- قسم المحاكي التجريبي التفاعلي -->
+        <div class="dashboard-grid">
+          
+          <div class="card card-simulator">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="tag tag-live">مباشر</span>
+                <h2>محاكي التعليقات</h2>
+              </div>
+
+              <!-- محدد المنصة للمحاكي -->
+              <div class="platform-selector-tabs">
+                <button class="platform-tab active" data-platform="facebook" id="sim-tab-fb">فيسبوك</button>
+                <button class="platform-tab" data-platform="instagram" id="sim-tab-ig">إنستغرام</button>
+              </div>
+            </div>
+
+            <!-- أداة اختيار المنشور المستهدف للاختبار -->
+            <div class="sim-post-picker-bar">
+              <label for="sim-target-post">المنشور المستهدف:</label>
+              <select id="sim-target-post" class="form-select post-picker-select">
+                <option value="post_watches">⌚ عرض الساعات (سعر 120)</option>
+                <option value="post_perfumes">🌸 عرض العطور (سعر 250)</option>
+                <option value="all">🌐 منشور عام</option>
+              </select>
+            </div>
+
+            <!-- نموذج المنشور التفاعلي -->
+            <div class="facebook-mockup" id="simulator-mockup-container">
+              <div class="mockup-header">
+                <div class="fb-avatar" id="mockup-avatar">M</div>
+                <div class="fb-author-info">
+                  <strong id="mockup-author-name">صفحتي الرسمية</strong>
+                  <small id="mockup-post-type">منشور ممول · منذ أسبوعين (منشور قديم) · 🌐</small>
+                </div>
+              </div>
+              <div class="mockup-post-body" id="mockup-body-text">
+                ⌚ <strong>عرض الساعات الفاخرة:</strong> احصل على الساعة الكلاسيكية الفاخرة بخصم خاص وضمان سنة كاملة! اكتب (السعر) في التعليقات لمعرفة السعر الفوري.
+              </div>
+              
+              <div class="mockup-comment-input-area">
+                <div class="sim-controls">
+                  <div class="inline-name">
+                    <label for="sim-author-name">صاحب التعليق:</label>
+                    <input type="text" id="sim-author-name" value="سارة محمد" placeholder="اسم صاحب التعليق">
+                  </div>
+                  <div class="quick-chips" id="sim-quick-chips">
+                    <span>اقتراحات سريعة:</span>
+                    <button class="chip-btn" data-text="بكم السعر؟">بكم السعر؟</button>
+                    <button class="chip-btn" data-text="كم سعر العرض">كم سعر العرض</button>
+                    <button class="chip-btn" data-text="وين موقعكم أو فرعكم؟">وين موقعكم؟</button>
+                  </div>
+                </div>
+
+                <div class="comment-input-box">
+                  <textarea id="sim-comment-text" rows="2" placeholder="اكتب تعليقاً تجريبياً هنا للتحقق من استجابة النظام..."></textarea>
+                  <button class="btn btn-action" id="btn-submit-simulation">
+                    <span>إرسال التعليق التجريبي</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- صندوق نتائج الاستجابة التلقائية المباشرة -->
+              <div class="sim-result-box" id="sim-result-container" style="display: none;">
+                <div class="result-header">
+                  <span class="badge badge-success" id="sim-match-badge">✅ تم الرد المخصص بنجاح</span>
+                  <span class="badge badge-shield-log" id="sim-delay-badge">🛡️ تأخير بشري آمن: 2.5 ثانية</span>
+                  <span class="result-time" id="sim-timestamp">الآن</span>
+                </div>
+
+                <!-- 1. الرد العام على التعليق -->
+                <div class="reply-card public-reply">
+                  <div class="reply-badge" id="sim-public-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    1. الرد العام على التعليق (Public Reply)
+                  </div>
+                  <div class="reply-content" id="sim-public-reply-text">
+                    -
+                  </div>
+                </div>
+
+                <!-- 2. رسالة الماسنجر أو الـ DM الخاصة -->
+                <div class="reply-card private-reply">
+                  <div class="reply-badge messenger-badge" id="sim-private-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.91 1.455 5.514 3.737 7.21v3.532l3.39-1.86a10.875 10.875 0 0 0 2.873.388c5.523 0 10-4.145 10-9.27S17.523 2 12 2zm1.002 12.438l-2.55-2.723-4.975 2.723 5.474-5.812 2.613 2.723 4.912-2.723-5.474 5.812z"/></svg>
+                    2. الرسالة الخاصة الفورية (Messenger / Instagram DM)
+                  </div>
+                  <div class="messenger-preview-bubble" id="sim-private-bubble">
+                    <pre id="sim-private-reply-text">-</pre>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- بطاقة القواعد النشطة السريعة -->
+          <div class="card card-quick-rules">
+            <div class="card-header">
+              <h2>القواعد الفعالة الحالية</h2>
+              <button class="btn btn-sm btn-outline" id="btn-view-all-rules">عرض وتعديل الكل</button>
+            </div>
+            <div class="rules-quick-list" id="quick-rules-container">
+              <div class="loading-state">جاري تحميل القواعد...</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- التبويب 2: إدارة القواعد والكلمات المفتاحية -->
+      <section class="tab-pane" id="tab-rules">
+        <div class="section-top-bar">
+          <div>
+            <h2>إدارة قواعد الرد والكلمات المفتاحية</h2>
+            <p>خصص ردوداً فريدة لكل منشور على حدة، أو أنشئ قواعد عامة لجميع منشورات الصفحة</p>
+          </div>
+          <button class="btn btn-primary" id="btn-open-create-modal">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            إضافة قاعدة رد جديدة
+          </button>
+        </div>
+
+        <div class="rules-cards-grid" id="all-rules-container">
+          <!-- يتم عرض جميع القواعد هنا -->
+        </div>
+      </section>
+
+      <!-- التبويب 3: سجل النشاط والعمليات المباشرة -->
+      <section class="tab-pane" id="tab-logs">
+        <div class="section-top-bar">
+          <div>
+            <h2>سجل العمليات والتعليقات الواردة</h2>
+            <p>متابعة فورية توضح المنشور المستهدف والرد ومدة التأخير الآمن</p>
+          </div>
+          <div class="actions-group">
+            <button class="btn btn-outline" id="btn-refresh-logs">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+              تحديث
+            </button>
+            <button class="btn btn-danger-outline" id="btn-clear-logs">مسح السجل</button>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>الوقت</th>
+                <th>المنصة</th>
+                <th>المنشور</th>
+                <th>العميل</th>
+                <th>التعليق</th>
+                <th>القاعدة</th>
+                <th>التأخير الآمن</th>
+                <th>الحالة</th>
+              </tr>
+            </thead>
+            <tbody id="logs-table-body">
+              <tr>
+                <td colspan="8" class="text-center">جاري تحميل السجلات...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- التبويب 4: إعدادات ربط فيسبوك وإنستغرام ودرع الأمان -->
+      <section class="tab-pane" id="tab-settings">
+        <div class="settings-layout">
+          
+          <!-- بطاقة درع الحماية ومكافحة الحظر (Anti-Ban Shield) -->
+          <div class="card anti-ban-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="tag tag-shield">حماية قصوى 🛡️</span>
+                <h2>درع الأمان ومكافحة الحظر</h2>
+                <p>إعدادات ذكية معتمدة على سياسات Meta لحماية الصفحة وحسابك من الحظر</p>
+              </div>
+            </div>
+
+            <!-- المفتاح الرئيسي للدرع -->
+            <div class="toggle-setting-row master-shield-row">
+              <div class="toggle-setting-info">
+                <div class="toggle-setting-title">
+                  <span class="shield-badge-dot"></span>
+                  <strong>تفعيل الدرع الشامل</strong>
+                  <span class="badge badge-success">نشط 100%</span>
+                </div>
+                <span class="toggle-setting-sub">محاكاة سلوك بشري طبيعي لمنع قيود فيسبوك وإنستغرام</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="antiban-enabled" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- إعدادات السرعة والتأخير المدمجة -->
+            <div class="settings-compact-grid">
+              <div class="compact-setting-box">
+                <div class="compact-box-header">
+                  <span class="compact-icon">⏱️</span>
+                  <label>التأخير البشري العشوائي</label>
+                </div>
+                <div class="compact-inputs-row">
+                  <span>من</span>
+                  <input type="number" id="antiban-min-delay" value="2" min="1" max="10">
+                  <span>إلى</span>
+                  <input type="number" id="antiban-max-delay" value="5" min="2" max="30">
+                  <span class="unit-label">ثوانٍ</span>
+                </div>
+              </div>
+
+              <div class="compact-setting-box">
+                <div class="compact-box-header">
+                  <span class="compact-icon">⚡</span>
+                  <label>محدد السرعة القصوى</label>
+                </div>
+                <div class="compact-inputs-row">
+                  <input type="number" id="antiban-max-per-hour" value="150" min="20" max="1000">
+                  <span class="unit-label">رد / ساعة</span>
+                  <span class="badge badge-success" title="تنوع النصوص Spintax مفعّل">Spintax ✓</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- قائمة مفاتيح الأمان الذكية بتصميم أنيق وموجز -->
+            <div class="settings-toggles-list">
+              
+              <div class="toggle-setting-row">
+                <div class="toggle-setting-info">
+                  <strong>الالتزام بسياسة Meta للرسائل (7 أيام)</strong>
+                  <span class="toggle-setting-sub">إلغاء مراسلة التعليقات الأقدم من 7 أيام لتفادي مخالفة فيسبوك</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="antiban-enforce-7days" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-setting-row">
+                <div class="toggle-setting-info">
+                  <strong>منع تكرار الرد (Deduplication)</strong>
+                  <span class="toggle-setting-sub">تجاهل التعليقات المعالجة مسبقاً لمنع تكرار الردود والضغط</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="antiban-deduplication" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-setting-row">
+                <div class="toggle-setting-info">
+                  <strong>منع إزعاج العميل (User Cooldown)</strong>
+                  <span class="toggle-setting-sub">رسالة خاصة واحدة كل 10 دقائق لنفس الحساب لمنع بلاغات السبام</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="antiban-user-cooldown" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-setting-row">
+                <div class="toggle-setting-info">
+                  <strong>التهدئة التلقائية عند ضغط Meta (Auto-Backoff)</strong>
+                  <span class="toggle-setting-sub">انتظار تلقائي 60 ثانية في حال أرسل السيرفر تنبيه ضغط معدل</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="antiban-auto-backoff" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-setting-row">
+                <div class="toggle-setting-info">
+                  <strong>فلتر التعليقات السلبية والشكاوى</strong>
+                  <span class="toggle-setting-sub">حجب الرد الآلي فوراً عند كشف كلمات غضب لتحويل العميل لدعم بشري</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="antiban-negative-filter" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+            </div>
+
+            <!-- حقل الكلمات السلبية المستبعدة -->
+            <div class="negative-keywords-compact" id="negative-keywords-group">
+              <label for="antiban-negative-keywords">الكلمات المستبعدة من الرد الآلي:</label>
+              <input type="text" id="antiban-negative-keywords" value="نصابين, سرقة, حرامية, غش, اشتكي, سيء, شكوى, نصاب, كذابين" placeholder="اكتب الكلمات مفصولة بفاصلة">
+            </div>
+          </div>
+
+          <!-- بطاقة الـ Webhook -->
+          <div class="card">
+            <div class="card-header">
+              <h2>رابط الـ Webhook الموحد لـ Meta</h2>
+              <p>يعمل لفيسبوك وإنستغرام معاً في لوحة مطوري فيسبوك</p>
+            </div>
+            
+            <div class="form-group">
+              <label for="webhook-url-input">رابط Webhook (Callback URL):</label>
+              <div class="copy-input-group">
+                <input type="text" id="webhook-url-input" readonly value="http://localhost:3000/webhook">
+                <button class="btn btn-outline" id="btn-copy-webhook">نسخ</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="setting-verify-token">رمز التحقق (Verify Token):</label>
+              <div class="copy-input-group">
+                <input type="text" id="setting-verify-token" value="my_secret_fb_verify_token_2026">
+                <button class="btn btn-outline" id="btn-copy-token">نسخ</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- بطاقة مفاتيح الربط -->
+          <div class="card">
+            <div class="card-header">
+              <h2>مفاتيح حسابات Meta</h2>
+              <p>للنشر الحقيقي على صفحة فيسبوك وحساب إنستغرام التجاري</p>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="setting-page-id">معرّف الصفحة (Page ID):</label>
+                <input type="text" id="setting-page-id" placeholder="104829381928391">
+              </div>
+
+              <div class="form-group">
+                <label for="setting-ig-account-id">معرّف إنستغرام (IG Account ID):</label>
+                <input type="text" id="setting-ig-account-id" placeholder="178414002938472">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="setting-page-token">رمز الوصول العام (Page Access Token):</label>
+              <textarea id="setting-page-token" rows="2" placeholder="ألصق رمز EAAB... الخاص بصفحتك"></textarea>
+            </div>
+
+            <div class="toggle-setting-row">
+              <div class="toggle-setting-info">
+                <strong>تفعيل الإرسال الفعلي (Graph API Live)</strong>
+                <span class="toggle-setting-sub">عند إيقافه، يعمل النظام في وضع المحاكاة والاختبار الآمن</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="setting-live-toggle">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="form-actions mt-4">
+              <button class="btn btn-primary" id="btn-save-settings">حفظ جميع الإعدادات</button>
+              <span id="save-settings-feedback" class="feedback-msg"></span>
+            </div>
+          </div>
+
+          <!-- بطاقة الأمان والنسخ الاحتياطي السحابي -->
+          <div class="card security-backup-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="tag tag-shield">حماية كاملة 🛡️</span>
+                <h2>الأمان وتأمين اللوحة من الاختراقات</h2>
+                <p>قفل لوحة التحكم برمز سري وتشفير الـ Webhook والنسخ الاحتياطي للبيانات</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="setting-app-secret">مفتاح تطبيق Meta السري (App Secret):</label>
+              <input type="password" id="setting-app-secret" placeholder="ألصق App Secret لتفعيل التوقيع المشفر HMAC-SHA256">
+              <small class="helper-text">يمنع أي شخص أو مخترق من إرسال طلبات وهمية باسم فيسبوك إلى السيرفر</small>
+            </div>
+
+            <div class="backup-actions-grid">
+              <div class="backup-box">
+                <strong>حماية البيانات من الضياع</strong>
+                <p>حمّل نسخة احتياطية بضغطة زر لحفظ كل القواعد والإعدادات على هاتفك أو حاسوبك</p>
+                <div class="backup-btns-row">
+                  <button type="button" class="btn btn-outline" id="btn-export-backup">
+                    💾 تحميل نسخة احتياطية (Backup)
+                  </button>
+                  <button type="button" class="btn btn-outline" id="btn-import-backup-trigger">
+                    📥 استعادة نسخة سابقة (Restore)
+                  </button>
+                  <input type="file" id="backup-file-input" style="display: none;" accept=".json">
+                </div>
+              </div>
+
+              <div class="backup-box">
+                <strong>رمز الـ PIN وجلسة المشرف</strong>
+                <p>قفل اللوحة أو تغيير الرمز السري المخصص لحمايتها على شبكات الإنترنت العامة</p>
+                <div class="backup-btns-row">
+                  <button type="button" class="btn btn-outline" id="btn-change-pin-trigger">
+                    🔑 تغيير رمز الـ PIN
+                  </button>
+                  <button type="button" class="btn btn-danger-outline" id="btn-lock-now">
+                    🔒 قفل اللوحة الآن
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- شريط التنقل السفلي المخصص لشاشات الهواتف الذكية -->
+  <nav class="mobile-bottom-nav">
+    <button class="mobile-nav-btn active" data-tab="tab-overview">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <span>المحاكي</span>
+    </button>
+    <button class="mobile-nav-btn" data-tab="tab-rules">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      <span>القواعد</span>
+    </button>
+    <button class="mobile-nav-btn" data-tab="tab-logs">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      <span>السجل</span>
+    </button>
+    <button class="mobile-nav-btn" data-tab="tab-settings">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      <span>الأمان</span>
+    </button>
+  </nav>
+
+  <!-- نافذة منبثقة لإضافة / تعديل قاعدة (Modal) -->
+  <div class="modal-overlay" id="rule-modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-handle-bar"></div>
+      <div class="modal-header">
+        <h3 id="modal-title">إضافة قاعدة رد جديدة</h3>
+        <button type="button" class="close-modal-btn" id="btn-close-modal" aria-label="إغلاق">&times;</button>
+      </div>
+      
+      <form id="rule-form">
+        <div class="modal-body">
+          <input type="hidden" id="form-rule-id">
+
+          <div class="form-group">
+            <label for="form-rule-name">اسم القاعدة:</label>
+            <input type="text" id="form-rule-name" placeholder="مثال: عرض الساعات" required>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="form-rule-platform">المنصة:</label>
+              <select id="form-rule-platform" class="form-select">
+                <option value="both">🌐 فيسبوك + إنستغرام</option>
+                <option value="instagram">🟣 إنستغرام فقط</option>
+                <option value="facebook">🔵 فيسبوك فقط</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="form-rule-scope">نطاق المنشور:</label>
+              <select id="form-rule-scope" class="form-select">
+                <option value="all">🌐 جميع المنشورات</option>
+                <option value="specific">🎯 منشور محدد (Post ID)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" id="form-post-id-group" style="display: none;">
+            <label for="form-rule-post-id">معرّف المنشور (Post ID):</label>
+            <input type="text" id="form-rule-post-id" placeholder="مثال: post_watches أو 104829381928391">
+          </div>
+
+          <div class="form-group">
+            <label for="form-rule-keywords">الكلمات المفتاحية (مفصولة بفاصلة):</label>
+            <input type="text" id="form-rule-keywords" placeholder="سعر, بكم, كم, تفاصيل, وين موقعكم" required>
+          </div>
+
+          <div class="form-group">
+            <label for="form-rule-public-replies">الرد العام على التعليق:</label>
+            <textarea id="form-rule-public-replies" rows="3" placeholder="أهلاً {user}! تفقد الخاص أرسلنا لك التفاصيل 📩&#10;مرحباً {user}! تم إرسال السعر في رسالة خاصة ❤️" required></textarea>
+            <small class="helper-text">💡 اكتب كل رد في سطر، أو استخدم {أهلاً|مرحباً} للتنويع التلقائي</small>
+          </div>
+
+          <div class="form-group">
+            <label for="form-rule-private-reply">الرسالة الخاصة (Messenger / DM):</label>
+            <textarea id="form-rule-private-reply" rows="3" placeholder="مرحباً {user}! سعر العرض هو ... ريال مع توصيل مجاني. هل تود تأكيد طلبك؟" required></textarea>
+          </div>
+
+          <div class="toggle-setting-row modal-toggle-row">
+            <div class="toggle-setting-info">
+              <strong>تفعيل القاعدة</strong>
+              <span class="toggle-setting-sub">بدء الرد التلقائي فور الحفظ</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="form-rule-active" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="btn-cancel-modal">إلغاء</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-rule-submit">حفظ القاعدة</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- إشعار التحديث المباشر للتطبيق السحابي (Live Update Toast) -->
+  <div class="update-toast" id="update-toast" style="display: none;">
+    <div class="update-toast-icon">🚀</div>
+    <div class="update-toast-body">
+      <strong>يتوفر تحديث جديد للوحة التحكم!</strong>
+      <small>تحديث فوري دون فقدان أي بيانات أو قواعد</small>
+    </div>
+    <button class="btn btn-sm btn-primary" id="btn-apply-update">تحديث الآن ↻</button>
+  </div>
+
+  <!-- نافذة قفل لوحة التحكم وحماية المشرف (PIN Lock & Setup Modal) -->
+  <div class="pin-lock-overlay" id="pin-lock-modal" style="display: none;">
+    <div class="pin-lock-card">
+      <div class="pin-shield-icon" id="pin-card-icon">🔒</div>
+      <h2 id="pin-card-title">لوحة التحكم محمية</h2>
+      <p id="pin-card-subtitle">أدخل رمز الـ PIN المخصص لفتح اللوحة بأمان</p>
+      
+      <form id="pin-auth-form">
+        <div class="form-group pin-input-wrapper">
+          <input type="password" id="input-pin-code" class="pin-input-field" placeholder="رمز PIN" maxlength="20" autofocus required autocomplete="current-password">
+        </div>
+
+        <div class="form-group pin-input-wrapper" id="pin-confirm-wrapper" style="display: none;">
+          <input type="password" id="input-pin-confirm" class="pin-input-field" placeholder="تأكيد رمز PIN" maxlength="20" autocomplete="new-password">
+        </div>
+
+        <div id="pin-feedback" class="pin-feedback-msg"></div>
+
+        <button type="submit" class="btn btn-primary btn-block pin-submit-btn" id="btn-pin-submit">
+          فتح اللوحة 🔓
+        </button>
+        <button type="button" class="btn btn-outline btn-block mt-2" id="btn-cancel-pin-setup" style="display: none; width: 100%; margin-top: 10px;">
+          إلغاء وتخطي الآن
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- نافذة تغيير رمز الـ PIN -->
+  <div class="modal-overlay" id="change-pin-modal" style="display: none;">
+    <div class="modal-content" style="max-width: 420px;">
+      <div class="modal-handle-bar"></div>
+      <div class="modal-header">
+        <h3>تغيير رمز الـ PIN الأمني</h3>
+        <button type="button" class="close-modal-btn" id="btn-close-change-pin">&times;</button>
+      </div>
+      <form id="change-pin-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="old-pin-input">رمز الـ PIN الحالي:</label>
+            <input type="password" id="old-pin-input" placeholder="الرمز الحالي" required>
+          </div>
+          <div class="form-group">
+            <label for="new-pin-input">رمز الـ PIN الجديد (4 خانات على الأقل):</label>
+            <input type="password" id="new-pin-input" placeholder="الرمز الجديد" required minlength="4">
+          </div>
+          <div class="form-group">
+            <label for="confirm-new-pin-input">تأكيد الرمز الجديد:</label>
+            <input type="password" id="confirm-new-pin-input" placeholder="تأكيد الرمز الجديد" required minlength="4">
+          </div>
+          <div id="change-pin-feedback" class="feedback-msg"></div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="btn-cancel-change-pin">إلغاء</button>
+          <button type="submit" class="btn btn-primary">حفظ الرمز الجديد</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

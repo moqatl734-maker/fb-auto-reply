@@ -1,0 +1,410 @@
+{
+  "settings": {
+    "pageAccessToken": "",
+    "verifyToken": "my_secret_fb_verify_token_2026",
+    "pageId": "",
+    "instagramAccountId": "",
+    "enableLiveGraphApi": false,
+    "antiBan": {
+      "enabled": true,
+      "emergencyStop": false,
+      "minDelaySeconds": 2,
+      "maxDelaySeconds": 5,
+      "enableUserCooldown": true,
+      "userCooldownMinutes": 10,
+      "enableDeduplication": true,
+      "autoBackoffOnLimit": true,
+      "maxRepliesPerHour": 150,
+      "enableNegativeFilter": true,
+      "negativeKeywords": [
+        "نصابين",
+        "سرقة",
+        "حرامية",
+        "غش",
+        "اشتكي",
+        "سيء",
+        "شكوى",
+        "نصاب",
+        "كذابين"
+      ],
+      "enforce7DayPolicy": true
+    }
+  },
+  "rules": [
+    {
+      "id": "rule_watches",
+      "name": "عرض الساعات الرجالية (خاص بالمنشور 1)",
+      "platform": "both",
+      "postScope": "specific",
+      "postId": "post_watches",
+      "keywords": [
+        "سعر",
+        "السعر",
+        "بكم",
+        "كام",
+        "كم"
+      ],
+      "publicReplies": [
+        "أهلاً {user}! تم إرسال سعر ومواصفات الساعة الرجالية في رسائلك الخاصة ⌚📩",
+        "مرحباً {user}، تفقد الخاص أرسلنا لك سعر الساعة مع ضمان سنة كاملة 🎁",
+        "أهلاً بك! تفقد صندوق الرسائل أرسلنا لك كافة تفاصيل العرض 📩"
+      ],
+      "privateReply": "مرحباً {user}! ⌚\nسعر الساعة الرجالية الفاخرة في هذا العرض هو 120 ريال فقط (بدلاً من 200 ريال).\nالضمان: سنة كاملة ضد الماء والعيوب.\n\nهل تود تأكيد طلب الساعة مع الشحن المجاني؟",
+      "isActive": true
+    },
+    {
+      "id": "rule_perfumes",
+      "name": "عرض العطور الفرنسية (خاص بالمنشور 2)",
+      "platform": "both",
+      "postScope": "specific",
+      "postId": "post_perfumes",
+      "keywords": [
+        "سعر",
+        "السعر",
+        "بكم",
+        "كام",
+        "كم"
+      ],
+      "publicReplies": [
+        "أهلاً {user}! أرسلنا لك قائمة عطور العرض الخاص في الـ DM فوراً 🌸✨",
+        "مرحباً بك، تفقد الرسائل الخاصة ستجد أسعار بكج العطور الفاخر 📩",
+        "أهلاً {user}! تم إرسال كود خصم العطور في رسالة خاصة فوراً 🎁"
+      ],
+      "privateReply": "أهلاً بك يا {user}! 🌸\nسعر بكج العطور الفرنسية (3 زجاجات 100 مل) هو 250 ريال فقط لفترة محدودة.\nالثبات مضمون لأكثر من 24 ساعة.\n\nهل تفضل الروائح الشرقية أم الفرنسية الهادئة؟",
+      "isActive": true
+    },
+    {
+      "id": "rule_general_price",
+      "name": "استفسارات الأسعار العامة (لكل منشورات الصفحة)",
+      "platform": "both",
+      "postScope": "all",
+      "postId": "",
+      "keywords": [
+        "سعر",
+        "السعر",
+        "بكم",
+        "كام",
+        "التكلفة"
+      ],
+      "publicReplies": [
+        "أهلاً بك يا {user}! أرسلنا لك تفاصيل الأسعار في الرسائل الخاصة 📩",
+        "مرحباً {user}، تفقد رسائل الخاص أرسلنا لك السعر مع كود خصم خاص 🎁",
+        "أهلاً بك! تم إرسال قائمة العروض والأسعار في صندوق الوارد 📩"
+      ],
+      "privateReply": "مرحباً بك يا {user}! 👋\nيسعدنا اهتمامك. تم إرسال تفاصيل الأسعار والعروض الخاصة لرسائلك الخاصة.\n\nهل تود الاستفسار عن منتج محدد؟",
+      "isActive": true
+    },
+    {
+      "id": "rule_location",
+      "name": "الاستفسار عن الموقع والفروع (عام)",
+      "platform": "both",
+      "postScope": "all",
+      "postId": "",
+      "keywords": [
+        "موقعكم",
+        "وين مكانكم",
+        "وين موقعكم",
+        "الفرع",
+        "العنوان",
+        "location"
+      ],
+      "publicReplies": [
+        "أهلاً {user}، أرسلنا لك موقع فروعنا ورابط خرائط جوجل على الخاص 📍",
+        "مرحباً {user}! تم إرسال العنوان ورقم التواصل في رسائلك الخاصة 🚗"
+      ],
+      "privateReply": "أهلاً بك! 📍 فروعنا ترحب بك:\nالفرع الرئيسي: شارع الملك فهد - بجوار المركز التجاري\nمواعيد العمل: يومياً من 10 صباحاً حتى 11 مساءً.\n\nكما يتوفر لدينا توصيل سريع لجميع المناطق!",
+      "isActive": true
+    },
+    {
+      "id": "rule_1792628736034",
+      "name": "سيبلا",
+      "platform": "instagram",
+      "postScope": "specific",
+      "postId": "15651",
+      "keywords": [
+        "سعر",
+        "بكم"
+      ],
+      "publicReplies": [
+        "تارلايؤش"
+      ],
+      "privateReply": "نشتلاس",
+      "isActive": true
+    }
+  ],
+  "logs": [
+    {
+      "id": "sim_1792628859288",
+      "timestamp": "2026-10-22T00:27:39.288Z",
+      "platform": "instagram",
+      "postId": "15651",
+      "author": "@test_user",
+      "comment": "سعر",
+      "matchedRule": "سيبلا 🎯 [رد مخصص للمنشور]",
+      "publicReply": "تارلايؤش",
+      "privateReply": "نشتلاس",
+      "delayUsed": "2.3 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792628837278",
+      "timestamp": "2026-10-22T00:27:17.278Z",
+      "platform": "facebook",
+      "postId": "15651",
+      "author": "مستخدم تجريبي",
+      "comment": "سعر",
+      "matchedRule": "استفسارات الأسعار العامة (لكل منشورات الصفحة) 🌐 [رد عام لكل المنشورات]",
+      "publicReply": "أهلاً بك! تم إرسال قائمة العروض والأسعار في صندوق الوارد 📩",
+      "privateReply": "مرحباً بك يا مستخدم تجريبي! 👋\nيسعدنا اهتمامك. تم إرسال تفاصيل الأسعار والعروض الخاصة لرسائلك الخاصة.\n\nهل تود الاستفسار عن منتج محدد؟",
+      "delayUsed": "2.3 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792628762395",
+      "timestamp": "2026-10-22T00:26:02.396Z",
+      "platform": "instagram",
+      "postId": "15651",
+      "author": "@sarah_designer",
+      "comment": "بكم",
+      "matchedRule": "سيبلا 🎯 [رد مخصص للمنشور]",
+      "publicReply": "تارلايؤش",
+      "privateReply": "نشتلاس",
+      "delayUsed": "3.4 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792628667998",
+      "timestamp": "2026-10-22T00:24:27.998Z",
+      "platform": "instagram",
+      "postId": "all",
+      "author": "@sarah_designer",
+      "comment": "كام",
+      "matchedRule": "استفسارات الأسعار العامة (لكل منشورات الصفحة) 🌐 [رد عام لكل المنشورات]",
+      "publicReply": "أهلاً بك! تم إرسال قائمة العروض والأسعار في صندوق الوارد 📩",
+      "privateReply": "مرحباً بك يا @sarah_designer! 👋\nيسعدنا اهتمامك. تم إرسال تفاصيل الأسعار والعروض الخاصة لرسائلك الخاصة.\n\nهل تود الاستفسار عن منتج محدد؟",
+      "delayUsed": "3.2 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792628590343",
+      "timestamp": "2026-10-22T00:23:10.343Z",
+      "platform": "facebook",
+      "postId": "post_sunglasses",
+      "author": "زبون غاضب",
+      "comment": "نصابين وين طلبي",
+      "matchedRule": "⚠️ تعليق سلبي/شكوى تم رصدها",
+      "publicReply": "تم حجب الرد التلقائي لحماية صفحتك من الإبلاغات",
+      "privateReply": "تنبيه للإدارة: عميل غير راضٍ يحتاج تدخلاً بشرياً فورياً",
+      "delayUsed": "0 ثانية (حماية فورية)",
+      "status": "warning",
+      "isSimulation": true,
+      "securityNote": "فلتر الذكاء الاجتماعي وحماية السمعة"
+    },
+    {
+      "id": "sim_1792628590340",
+      "timestamp": "2026-10-22T00:23:10.340Z",
+      "platform": "facebook",
+      "postId": "post_sunglasses",
+      "author": "أحمد خالد",
+      "comment": "بكم سعر النظارة لو سمحت",
+      "matchedRule": "عرض النظارات الشمسية الفاخرة 🎯 [رد مخصص للمنشور]",
+      "publicReply": "أهلاً أحمد خالد! تم إرسال سعر النظارة الإيطالية في الخاص 🕶️",
+      "privateReply": "مرحباً أحمد خالد! سعر النظارة 90 ريال مع حماية UV كاملة وشحن مجاني.",
+      "delayUsed": "4.2 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792627756723",
+      "timestamp": "2026-10-22T00:09:16.723Z",
+      "platform": "instagram",
+      "postId": "all",
+      "author": "@sarah_designer",
+      "comment": "كم سعر العرض",
+      "matchedRule": "استفسارات الأسعار العامة (لكل منشورات الصفحة) 🌐 [رد عام لكل المنشورات]",
+      "publicReply": "مرحباً @sarah_designer، تفقد رسائل الخاص أرسلنا لك السعر مع كود خصم خاص 🎁",
+      "privateReply": "مرحباً بك يا @sarah_designer! 👋\nيسعدنا اهتمامك. تم إرسال تفاصيل الأسعار والعروض الخاصة لرسائلك الخاصة.\n\nهل تود الاستفسار عن منتج محدد؟",
+      "delayUsed": "2.3 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792627572399",
+      "timestamp": "2026-10-22T00:06:12.399Z",
+      "platform": "facebook",
+      "postId": "post_watches",
+      "author": "عميل غاضب",
+      "comment": "أنتم نصابين وين طلبي",
+      "matchedRule": "⚠️ تعليق سلبي/شكوى تم رصدها",
+      "publicReply": "تم حجب الرد التلقائي لحماية صفحتك من الإبلاغات",
+      "privateReply": "تنبيه للإدارة: عميل غير راضٍ يحتاج تدخلاً بشرياً فورياً",
+      "delayUsed": "0 ثانية (حماية فورية)",
+      "status": "warning",
+      "isSimulation": true,
+      "securityNote": "فلتر الذكاء الاجتماعي وحماية السمعة"
+    },
+    {
+      "id": "sim_1792627548811",
+      "timestamp": "2026-10-22T00:05:48.811Z",
+      "platform": "facebook",
+      "postId": "post_watches",
+      "author": "عميل تجريبي",
+      "comment": "كم سعر الساعة",
+      "matchedRule": "عرض الساعات الرجالية (خاص بالمنشور 1) 🎯 [رد مخصص للمنشور]",
+      "publicReply": "مرحباً عميل تجريبي، تفقد الخاص أرسلنا لك سعر الساعة مع ضمان سنة كاملة 🎁",
+      "privateReply": "مرحباً عميل تجريبي! ⌚\nسعر الساعة الرجالية الفاخرة في هذا العرض هو 120 ريال فقط (بدلاً من 200 ريال).\nالضمان: سنة كاملة ضد الماء والعيوب.\n\nهل تود تأكيد طلب الساعة مع الشحن المجاني؟",
+      "delayUsed": "2.1 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792627477156",
+      "timestamp": "2026-10-22T00:04:37.156Z",
+      "platform": "facebook",
+      "postId": "post_watches",
+      "author": "عميل تجريبي",
+      "comment": "",
+      "matchedRule": "لا توجد قاعدة مطابقة",
+      "publicReply": "لم يتم الرد (لا توجد كلمة مفتاحية مطابقة)",
+      "privateReply": "-",
+      "delayUsed": "4.4 ثانية",
+      "status": "skipped",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792627423992",
+      "timestamp": "2026-10-22T00:03:43.992Z",
+      "platform": "facebook",
+      "postId": "post_perfumes",
+      "author": "سارة محمد",
+      "comment": "كم سعر العرض",
+      "matchedRule": "عرض العطور الفرنسية (خاص بالمنشور 2) 🎯 [رد مخصص للمنشور]",
+      "publicReply": "مرحباً بك، تفقد الرسائل الخاصة ستجد أسعار بكج العطور الفاخر 📩",
+      "privateReply": "أهلاً بك يا سارة محمد! 🌸\nسعر بكج العطور الفرنسية (3 زجاجات 100 مل) هو 250 ريال فقط لفترة محدودة.\nالثبات مضمون لأكثر من 24 ساعة.\n\nهل تفضل الروائح الشرقية أم الفرنسية الهادئة؟",
+      "delayUsed": "2.6 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792627417063",
+      "timestamp": "2026-10-22T00:03:37.063Z",
+      "platform": "facebook",
+      "postId": "post_watches",
+      "author": "عميل تجريبي",
+      "comment": "",
+      "matchedRule": "لا توجد قاعدة مطابقة",
+      "publicReply": "لم يتم الرد (لا توجد كلمة مفتاحية مطابقة)",
+      "privateReply": "-",
+      "delayUsed": "2.2 ثانية",
+      "status": "skipped",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792626007842",
+      "timestamp": "2026-10-21T23:40:07.842Z",
+      "platform": "facebook",
+      "postId": "post_watches",
+      "author": "سارة محمد",
+      "comment": "كم سعر العرض",
+      "matchedRule": "عرض الساعات الرجالية (خاص بالمنشور 1) 🎯 [رد مخصص للمنشور]",
+      "publicReply": "مرحباً سارة محمد، تفقد الخاص أرسلنا لك سعر الساعة مع ضمان سنة كاملة 🎁",
+      "privateReply": "مرحباً سارة محمد! ⌚\nسعر الساعة الرجالية الفاخرة في هذا العرض هو 120 ريال فقط (بدلاً من 200 ريال).\nالضمان: سنة كاملة ضد الماء والعيوب.\n\nهل تود تأكيد طلب الساعة مع الشحن المجاني؟",
+      "delayUsed": "2.4 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792621219571",
+      "timestamp": "2026-10-21T22:20:19.571Z",
+      "platform": "facebook",
+      "postId": "post_watches",
+      "author": "سارة محمد",
+      "comment": "كم سعر العرض",
+      "matchedRule": "عرض الساعات الرجالية (خاص بالمنشور 1) 🎯 [رد مخصص للمنشور]",
+      "publicReply": "مرحباً سارة محمد، تفقد الخاص أرسلنا لك سعر الساعة مع ضمان سنة كاملة 🎁",
+      "privateReply": "مرحباً سارة محمد! ⌚\nسعر الساعة الرجالية الفاخرة في هذا العرض هو 120 ريال فقط (بدلاً من 200 ريال).\nالضمان: سنة كاملة ضد الماء والعيوب.\n\nهل تود تأكيد طلب الساعة مع الشحن المجاني؟",
+      "delayUsed": "3.8 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792621197770",
+      "timestamp": "2026-10-21T22:19:57.770Z",
+      "platform": "facebook",
+      "postId": "post_perfumes",
+      "author": "سارة محمد",
+      "comment": "كم سعر العرض",
+      "matchedRule": "عرض العطور الفرنسية (خاص بالمنشور 2) 🎯 [رد مخصص للمنشور]",
+      "publicReply": "مرحباً بك، تفقد الرسائل الخاصة ستجد أسعار بكج العطور الفاخر 📩",
+      "privateReply": "أهلاً بك يا سارة محمد! 🌸\nسعر بكج العطور الفرنسية (3 زجاجات 100 مل) هو 250 ريال فقط لفترة محدودة.\nالثبات مضمون لأكثر من 24 ساعة.\n\nهل تفضل الروائح الشرقية أم الفرنسية الهادئة؟",
+      "delayUsed": "3.5 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792620907351",
+      "timestamp": "2026-10-21T22:15:07.351Z",
+      "platform": "facebook",
+      "postId": "post_watches",
+      "author": "محمد أحمد",
+      "comment": "بكم الساعة لو سمحت",
+      "matchedRule": "عرض الساعات الرجالية (خاص بالمنشور 1) 🎯 [رد مخصص للمنشور]",
+      "publicReply": "مرحباً محمد أحمد، تفقد الخاص أرسلنا لك سعر الساعة مع ضمان سنة كاملة 🎁",
+      "privateReply": "مرحباً محمد أحمد! ⌚\nسعر الساعة الرجالية الفاخرة في هذا العرض هو 120 ريال فقط (بدلاً من 200 ريال).\nالضمان: سنة كاملة ضد الماء والعيوب.\n\nهل تود تأكيد طلب الساعة مع الشحن المجاني؟",
+      "delayUsed": "3.8 ثانية",
+      "status": "success",
+      "isSimulation": true,
+      "securityNote": "محمي بدرع الأمان وتنوع الكلمات"
+    },
+    {
+      "id": "sim_1792620898967",
+      "timestamp": "2026-10-21T22:14:58.967Z",
+      "platform": "facebook",
+      "postId": "post_watches",
+      "author": "محمد أحمد",
+      "comment": "أنتو نصابين وين طلبي",
+      "matchedRule": "⚠️ تعليق سلبي/شكوى تم رصدها",
+      "publicReply": "تم حجب الرد التلقائي لحماية صفحتك من الإبلاغات",
+      "privateReply": "تنبيه للإدارة: عميل غير راضٍ يحتاج تدخلاً بشرياً فورياً",
+      "delayUsed": "0 ثانية (حماية فورية)",
+      "status": "warning",
+      "isSimulation": true,
+      "securityNote": "فلتر الذكاء الاجتماعي وحماية السمعة"
+    },
+    {
+      "id": "log_init",
+      "timestamp": "2026-10-22T00:50:00.000Z",
+      "platform": "both",
+      "postId": "all",
+      "author": "نظام الأمان",
+      "comment": "تم تفعيل درع الحماية ومكافحة الحظر (Anti-Ban Shield) بنجاح.",
+      "matchedRule": "درع الحماية والأمان",
+      "publicReply": "طابور المعالجة الآمن وتأخير التفاعل البشري نشط",
+      "privateReply": "حماية كاملة من الحظر والـ Rate Limits",
+      "status": "success"
+    }
+  ],
+  "security": {
+    "pinHash": "db9a6fb8dcfd2d1da2949ffd98a07ca0a6e61c3a95d3a4d20096730ec169bc18",
+    "pinSalt": "8273c3beb5310b416c898a355e8db241",
+    "appSecret": "",
+    "createdAt": "2026-10-22T00:30:07.679Z"
+  }
+}
